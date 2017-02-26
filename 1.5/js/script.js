@@ -20,11 +20,15 @@ var student_grade_table = (function(){
                     console.log(studentInfo)
                 };
 
-                var clearInputs = (function(){
+                var clearInputs = function(){
                     $("#studentName").val("");
                     $("#course").val("");
                     $("#studentGrade").val("");
-                }());
+
+                    $("#studentName").removeClass("missing");
+                    $("#course").removeClass("missing");
+                    $("#studentGrade").removeClass("missing");
+                };
                     
                 var domCreation = function(){
                     var studentRow = $("<tr>");
@@ -38,29 +42,43 @@ var student_grade_table = (function(){
                     var studentGrade = $("<td>", {
                         text: info.grade
                     });
-                    var studentOperations = $("<td>", {
+                    var deleteStudent = $("<td>", {
                         text: "Delete",
                         class: "btn btn-danger delete"
                     });
                         
-                    $(studentRow).append(studentName, studentCourse, studentGrade, studentOperations);
+                    $(studentRow).append(studentName, studentCourse, studentGrade, deleteStudent);
                     $("tbody").append(studentRow);
                 }; 
 
                 var test = (function(){
-                    // pushesInfoToStudentInfo();
-                    // domCreation()
-
+                    
                     var noName = info.name;
                     var noCourse = info.course;
                     var noGrade = info.grade;
 
-                    if(noName === false){
-                        alert("Student Name is missing")
-                        $()
+                    if(noName && noCourse && noGrade !== ""){
+                        pushesInfoToStudentInfo();
+                        domCreation();
+                        clearInputs();
+                        
                     }
                     else {
-                        alert("you are missing something")
+                        
+
+                        if(noName === ""){
+                            alert("you are missing student's name")
+                            $("#studentName").addClass("missing");
+                        }
+                        else if(noCourse === ""){
+                            alert("you are missing student's course")
+                            $("#course").addClass("missing");
+                        }
+                        else if(noGrade === ""){
+                            alert("you are missing student's grade")
+                            $("#studentGrade").addClass("missing");
+                        }
+
                     }
                 }());
 
@@ -73,6 +91,7 @@ var student_grade_table = (function(){
         delete: function(){
             $(".delete").click(function(){
                 alert("delete");
+                console.log("delete")
             });
         },
 
@@ -106,6 +125,10 @@ var student_grade_table = (function(){
             
         
 }());
+
+
+
+
 
         
 
