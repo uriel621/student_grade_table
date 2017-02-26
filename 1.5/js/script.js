@@ -2,6 +2,8 @@ var student_grade_table = (function(){
     
 
     var studentInfo = [];
+    var clearInputs;
+    var delete_button
     var actions = {
         
         
@@ -20,7 +22,7 @@ var student_grade_table = (function(){
                     console.log(studentInfo)
                 };
 
-                var clearInputs = function(){
+                clearInputs = function(){
                     $("#studentName").val("");
                     $("#course").val("");
                     $("#studentGrade").val("");
@@ -49,7 +51,13 @@ var student_grade_table = (function(){
                         
                     $(studentRow).append(studentName, studentCourse, studentGrade, deleteStudent);
                     $("tbody").append(studentRow);
+
+                    
                 }; 
+                    $(".delete").click(function(){
+                        // alert("delete");
+                        console.log("delete")
+                    });
 
                 var test = (function(){
                     
@@ -88,17 +96,18 @@ var student_grade_table = (function(){
         },
 
 
-        delete: function(){
-            $(".delete").click(function(){
-                alert("delete");
-                console.log("delete")
-            });
-        },
+        // delete: function(){
+        //     $(".delete").click(function(){
+        //         alert("delete");
+        //         console.log("delete")
+        //     });
+        // },
 
 
         cancel: function(){
             $("#cancel").click(function(){
                 alert("cancel");
+                clearInputs()
             });
         },
 
@@ -115,7 +124,7 @@ var student_grade_table = (function(){
 
     var init = {
         addStudents: actions.add(),
-        deleteStudents: actions.delete(),
+        deleteStudents: delete_button,
         cancelStudents: actions.cancel(),
         serverStudents: actions.server(),
     };
