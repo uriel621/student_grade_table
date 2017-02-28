@@ -1,112 +1,52 @@
-var student_grade_table = (function(){
+// var student_grade_table = (function(){
     
 
-    var studentInfo = [];
+    var studentArray = [];
     var clearInputs;
     var delete_button
-    var actions = {
-        
+    
+    var studentInfo = {
+        name: $("#studentName"),
+        course: $("#course"),
+        grade: $("#studentGrade")
+    }
+    
+    var actionButtons = {    
         
         add: function(){
-            $("#add").click(function(name, course, grade){
+            $("#add").click(function(){
                 // alert("Add");
-
+                var name = studentInfo.name.val();
+                var course = studentInfo.course.val();
+                var grade = studentInfo.grade.val();
+                domCreation(name, course, grade);
+                
                 var info = {
-                    name: $("#studentName").val(),
-                    course: $("#course").val(),
-                    grade: $("#studentGrade").val(),
-                }
-                
-                var pushesInfoToStudentInfo = function(){
-                    studentInfo.push(info)
-                    console.log(studentInfo)
+                    name: name,
+                    course: course,
+                    grade: grade
                 };
+    
+                studentArray.push(info);
+                console.log(studentArray);
+                // clearInputs(); 
+            });
+        },
+        
 
-                clearInputs = function(){
-                    $("#studentName").val("");
-                    $("#course").val("");
-                    $("#studentGrade").val("");
 
-                    $("#studentName").removeClass("missing");
-                    $("#course").removeClass("missing");
-                    $("#studentGrade").removeClass("missing");
-                };
-                    
-                var domCreation = function(){
-                    var studentRow = $("<tr>");
-                        
-                    var studentName = $("<td>", {
-                        text: info.name
-                    });
-                    var studentCourse = $("<td>", {
-                        text: info.course
-                    });
-                    var studentGrade = $("<td>", {
-                        text: info.grade
-                    });
-                    var deleteStudent = $("<td>", {
-                        text: "Delete",
-                        class: "btn btn-danger delete"
-                    });
-                        
-                    $(studentRow).append(studentName, studentCourse, studentGrade, deleteStudent);
-                    $("tbody").append(studentRow);
-
-                    
-                }; 
-                    $(".delete").click(function(){
-                        // alert("delete");
-                        console.log("delete")
-                    });
-
-                var test = (function(){
-                    
-                    var noName = info.name;
-                    var noCourse = info.course;
-                    var noGrade = info.grade;
-
-                    if(noName && noCourse && noGrade !== ""){
-                        pushesInfoToStudentInfo();
-                        domCreation();
-                        clearInputs();
-                        
-                    }
-                    else {
-                        
-
-                        if(noName === ""){
-                            alert("you are missing student's name")
-                            $("#studentName").addClass("missing");
-                        }
-                        else if(noCourse === ""){
-                            alert("you are missing student's course")
-                            $("#course").addClass("missing");
-                        }
-                        else if(noGrade === ""){
-                            alert("you are missing student's grade")
-                            $("#studentGrade").addClass("missing");
-                        }
-
-                    }
-                }());
-
-                
-
+        remove: function(){
+            $("body").on("click", ".delete", function(element){
+                console.log("delete");
+                // var value = studentInfo.
+                var index = studentArray.splice(0, 1)
+                console.log("Splicing", index);
+                console.log("After The Splice", studentArray);
             });
         },
 
-
-        // delete: function(){
-        //     $(".delete").click(function(){
-        //         alert("delete");
-        //         console.log("delete")
-        //     });
-        // },
-
-
         cancel: function(){
             $("#cancel").click(function(){
-                alert("cancel");
                 clearInputs()
             });
         },
@@ -119,21 +59,85 @@ var student_grade_table = (function(){
         }
     };
 
-
+    
+// $(".delete").click(function(){
+//                 alert("delete");
+//                 console.log("delete")
+//             });
             
 
     var init = {
-        addStudents: actions.add(),
-        deleteStudents: delete_button,
-        cancelStudents: actions.cancel(),
-        serverStudents: actions.server(),
+        addStudents: actionButtons.add(),
+        deleteStudents: actionButtons.remove(),
+        cancelStudents: actionButtons.cancel(),
+        serverStudents: actionButtons.server(),
+    };
+
+    var domCreation = function(name, course, grade){
+        var studentRow = $("<tr>");
+                        
+        var studentName = $("<td>", {
+            text: name
+        });
+        var studentCourse = $("<td>", {
+            text: course
+        });
+        var studentGrade = $("<td>", {
+            text: grade
+        });
+        var deleteStudent = $("<td>", {
+            text: "Delete",
+            class: "btn btn-danger delete"
+        });
+                        
+        $(studentRow).append(studentName, studentCourse, studentGrade, deleteStudent);
+        $("tbody").append(studentRow);
+
+    }; 
+
+    var clearInputs = function(){
+        $("#studentName").val("");
+        $("#course").val("");
+        $("#studentGrade").val("");
+
+        $("#studentName").removeClass("missing");
+        $("#course").removeClass("missing");
+        $("#studentGrade").removeClass("missing");
+    }
+
+    var testCheck = function(){
+        var noName = info.name;
+        var noCourse = info.course;
+        var noGrade = info.grade;
+
+        if(noName && noCourse && noGrade !== ""){
+            pushesInfoToStudentInfo();
+            domCreation();
+            clearInputs();
+                        
+        }
+        else {
+            if(noName === ""){
+                alert("you are missing student's name")
+                $("#studentName").addClass("missing");
+            }
+            else if(noCourse === ""){
+                alert("you are missing student's course")
+                $("#course").addClass("missing");
+            }
+            else if(noGrade === ""){
+                alert("you are missing student's grade")
+                $("#studentGrade").addClass("missing");
+            }
+
+        }
     };
     
 
         
             
         
-}());
+// }());
 
 
 
