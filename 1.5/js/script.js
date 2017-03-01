@@ -2,76 +2,52 @@
     
 
     var studentArray = [];
-    var clearInputs;
-    var delete_button
     
     var studentInfo = {
         name: $("#studentName"),
         course: $("#course"),
         grade: $("#studentGrade")
     }
+    var addBtn = $("#add");
+    var removeBtn = $(".delete");
+    var cancelBtn = $("#cancel");
+    var serverBtn = $("#server");
+
+    var add = function(){
+        console.log("add");
+    };
+    var remove = function(){
+        alert("remove");
+    };
+    var cancel = function(){
+        alert("cancel");
+    };
+    var server = function(){
+        alert("server");
+    };
     
-    var actionButtons = {    
-        
-        add: function(){
-            $("#add").click(function(){
-                // alert("Add");
-                var name = studentInfo.name.val();
-                var course = studentInfo.course.val();
-                var grade = studentInfo.grade.val();
-                domCreation(name, course, grade);
-                
-                var info = {
-                    name: name,
-                    course: course,
-                    grade: grade
-                };
-    
-                studentArray.push(info);
-                console.log(studentArray);
-                // clearInputs(); 
-            });
+    var events = {
+        addStudents: addBtn.onclick = function(){
+            add();
         },
-        
-
-
-        remove: function(){
-            $("body").on("click", ".delete", function(element){
-                console.log("delete");
-                // var value = studentInfo.
-                var index = studentArray.splice(0, 1)
-                console.log("Splicing", index);
-                console.log("After The Splice", studentArray);
-            });
+        removeStudents: removeBtn.onclick = function(){
+            remove();
         },
-
-        cancel: function(){
-            $("#cancel").click(function(){
-                clearInputs()
-            });
+        cancelStudents: cancelBtn.onclick = function(){
+            cancel();
         },
-
-
-        server: function(){
-            $("#server").click(function(){
-                alert("server");
-            });
+        serverStudents: serverBtn.onclick = function(){
+            server();
         }
     };
-
-    
-// $(".delete").click(function(){
-//                 alert("delete");
-//                 console.log("delete")
-//             });
             
 
-    var init = {
-        addStudents: actionButtons.add(),
-        deleteStudents: actionButtons.remove(),
-        cancelStudents: actionButtons.cancel(),
-        serverStudents: actionButtons.server(),
-    };
+    // var init = {
+    //     addStudents: add(),
+    //     deleteStudents: remove(),
+    //     cancelStudents: cancel(),
+    //     serverStudents: server(),
+    // };
 
     var domCreation = function(name, course, grade){
         var studentRow = $("<tr>");
@@ -145,3 +121,75 @@
 
         
 
+// var actionButtons = {    
+        
+    //     add: function(){
+    //         $("#add").click(function(){
+    //             // alert("Add");
+    //             var name = studentInfo.name.val();
+    //             var course = studentInfo.course.val();
+    //             var grade = studentInfo.grade.val();
+    //             domCreation(name, course, grade);
+                
+    //             var info = {
+    //                 name: name,
+    //                 course: course,
+    //                 grade: grade
+    //             };
+    
+    //             studentArray.push(info);
+    //             console.log("Just Added", studentArray);
+    //             // clearInputs(); 
+    //         });
+    //     },
+        
+
+
+    //     remove: function(){
+    //         $("body").on("click", ".delete", function(studentArray){
+    //             console.log("delete");
+    //             // console.log(array)
+
+    //             $(this).click(function(studentArray){
+    //                 console.log("This", studentArray)
+    //             })
+                
+    //             // $(this).click(function(){
+    //             //     var index = studentArray.splice(array, 1);
+    //             //     console.log("Spliced", index);
+    //             //     console.log("After The Splice", studentArray);
+    //             // })
+                
+
+    //             // // $(this).click(function(){
+    //             //     var text = $(this).html()
+    //             //     text = text.substring(0, text.length);
+    //             //     studentArray.splice(studentArray.indexOf(text), 1);
+    //             //     console.log("After The Splice", studentArray)
+    //             //     $(this).closest("button").remove();
+    //             // // });
+
+            
+                   
+                
+    //     })},
+
+    //     cancel: function(){
+    //         $("#cancel").click(function(){
+    //             clearInputs()
+    //         });
+    //     },
+
+
+    //     server: function(){
+    //         $("#server").click(function(){
+    //             alert("server");
+    //         });
+    //     }
+    // };
+
+    
+// $(".delete").click(function(){
+//                 alert("delete");
+//                 console.log("delete")
+//             });
