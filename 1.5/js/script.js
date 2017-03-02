@@ -24,16 +24,14 @@
             // clearInputs()
         },
         removeStudent: $("body").on("click", ".delete", function(){
-            $(this).click(function(){
-                console.log("hi")
-                $("tr").remove()
-            })
+            // $(this).click(function(){
+            //     console.log("hi")
+            //     $("tr").closest(".delete").remove()
+            // })
             
             studentArray.splice(0, 1);
             console.log("Spliced", studentArray);
-            
-            
-            
+            $(this).closest("tr").remove();          
         }),
         cancelStudent: function(){
             console.log("cancel");
