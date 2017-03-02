@@ -1,5 +1,4 @@
 var student_grade_table = (function(){
-    
 
     var studentArray = [];
     
@@ -91,8 +90,7 @@ var student_grade_table = (function(){
         if(noName && noCourse && noGrade !== ""){
             pushesInfoToStudentInfo();
             domCreation();
-            clearInputs();
-                        
+            clearInputs();            
         }
         else {
             if(noName === ""){
