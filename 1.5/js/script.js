@@ -3,51 +3,53 @@
 
     var studentArray = [];
     
-    var studentInfo = {
-        name: $("#studentName"),
-        course: $("#course"),
-        grade: $("#studentGrade")
-    }
-    var addBtn = $("#add");
-    var removeBtn = $(".delete");
-    var cancelBtn = $("#cancel");
-    var serverBtn = $("#server");
-
-    var add = function(){
-        console.log("add");
-    };
-    var remove = function(){
-        alert("remove");
-    };
-    var cancel = function(){
-        alert("cancel");
-    };
-    var server = function(){
-        alert("server");
+    var buttons = {
+        addButton: document.querySelector("#add"),
+        // removeButton: document.querySelector(".delete"),
+        cancelButton: document.querySelector("#cancel"),
+        serverButton: document.querySelector("#server")
     };
     
     var events = {
-        addStudents: addBtn.onclick = function(){
-            add();
+        addStudent: function(){
+            // console.log("add")
+            var studentInfo = {
+                name: $("#studentName").val(),
+                course: $("#course").val(),
+                grade: $("#studentGrade").val()
+            }
+            studentArray.push(studentInfo)
+            console.log("add", studentArray)
         },
-        removeStudents: removeBtn.onclick = function(){
-            remove();
-        },
-        cancelStudents: cancelBtn.onclick = function(){
-            cancel();
-        },
-        serverStudents: serverBtn.onclick = function(){
-            server();
-        }
-    };
-            
+        removeStudent: function(array){
+            // console.log("remove");
+            console.log("remove", array)
 
-    // var init = {
-    //     addStudents: add(),
-    //     deleteStudents: remove(),
-    //     cancelStudents: cancel(),
-    //     serverStudents: server(),
-    // };
+
+        },
+        cancelStudent: function(){
+            console.log("cancel");
+        },
+        serverStudent: function(){
+            console.log("server");
+        },
+    }
+
+    var init = {
+        add: buttons.addButton.onclick = function(){
+            events.addStudent();
+        },
+        remove: buttons.removeButton.onclick = function(){
+            events.removeStudent(studentArray)
+        },
+        cancel: buttons.cancelButton.onclick = function(){
+            events.cancelStudent();
+        },
+        server: buttons.serverButton.onclick = function(){
+            events.serverStudent();
+        },
+    }
+
 
     var domCreation = function(name, course, grade){
         var studentRow = $("<tr>");
