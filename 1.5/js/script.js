@@ -5,28 +5,36 @@
     
     var buttons = {
         addButton: document.querySelector("#add"),
-        // removeButton: document.querySelector(".delete"),
+        removeButton: document.querySelector(".delete"),
         cancelButton: document.querySelector("#cancel"),
         serverButton: document.querySelector("#server")
     };
     
     var events = {
         addStudent: function(){
-            // console.log("add")
+            
             var studentInfo = {
-                name: $("#studentName").val(),
-                course: $("#course").val(),
-                grade: $("#studentGrade").val()
-            }
+                name: document.querySelector("#studentName").value,
+                course: document.querySelector("#course").value,
+                grade: document.querySelector("#studentGrade").value,
+            };
             studentArray.push(studentInfo)
             console.log("add", studentArray)
+            domCreation (studentInfo.name, studentInfo.course, studentInfo.grade);
+            // clearInputs()
         },
-        removeStudent: function(array){
-            // console.log("remove");
-            console.log("remove", array)
-
-
-        },
+        removeStudent: $("body").on("click", ".delete", function(){
+            $(this).click(function(){
+                console.log("hi")
+                $("tr").remove()
+            })
+            
+            studentArray.splice(0, 1);
+            console.log("Spliced", studentArray);
+            
+            
+            
+        }),
         cancelStudent: function(){
             console.log("cancel");
         },
@@ -39,9 +47,9 @@
         add: buttons.addButton.onclick = function(){
             events.addStudent();
         },
-        remove: buttons.removeButton.onclick = function(){
-            events.removeStudent(studentArray)
-        },
+        // remove: buttons.removeButton.onclick = function(){
+        //     events.removeStudent();
+        // },
         cancel: buttons.cancelButton.onclick = function(){
             events.cancelStudent();
         },
@@ -51,7 +59,7 @@
     }
 
 
-    var domCreation = function(name, course, grade){
+    function domCreation (name, course, grade){
         var studentRow = $("<tr>");
                         
         var studentName = $("<td>", {
