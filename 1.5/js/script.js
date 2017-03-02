@@ -110,11 +110,7 @@ var student_grade_table = (function(){
 
         }
     };
-    
-
-        
-            
-        
+      
 }());
 
 
