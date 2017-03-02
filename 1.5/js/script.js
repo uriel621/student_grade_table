@@ -1,4 +1,4 @@
-// var student_grade_table = (function(){
+var student_grade_table = (function(){
     
 
     var studentArray = [];
@@ -12,7 +12,6 @@
     
     var events = {
         addStudent: function(){
-            
             var studentInfo = {
                 name: document.querySelector("#studentName").value,
                 course: document.querySelector("#course").value,
@@ -21,25 +20,20 @@
             studentArray.push(studentInfo)
             console.log("add", studentArray)
             domCreation (studentInfo.name, studentInfo.course, studentInfo.grade);
-            // clearInputs()
+            clearInputs();
         },
         removeStudent: $("body").on("click", ".delete", function(){
-            // $(this).click(function(){
-            //     console.log("hi")
-            //     $("tr").closest(".delete").remove()
-            // })
-            
             studentArray.splice(0, 1);
             console.log("Spliced", studentArray);
             $(this).closest("tr").remove();          
         }),
         cancelStudent: function(){
-            console.log("cancel");
+            clearInputs();
         },
         serverStudent: function(){
             console.log("server");
         },
-    }
+    };
 
     var init = {
         add: buttons.addButton.onclick = function(){
@@ -54,7 +48,7 @@
         server: buttons.serverButton.onclick = function(){
             events.serverStudent();
         },
-    }
+    };
 
 
     function domCreation (name, course, grade){
@@ -77,7 +71,7 @@
         $(studentRow).append(studentName, studentCourse, studentGrade, deleteStudent);
         $("tbody").append(studentRow);
 
-    }; 
+    } 
 
     var clearInputs = function(){
         $("#studentName").val("");
@@ -102,15 +96,15 @@
         }
         else {
             if(noName === ""){
-                alert("you are missing student's name")
+                alert("you are missing student's name");
                 $("#studentName").addClass("missing");
             }
             else if(noCourse === ""){
-                alert("you are missing student's course")
+                alert("you are missing student's course");
                 $("#course").addClass("missing");
             }
             else if(noGrade === ""){
-                alert("you are missing student's grade")
+                alert("you are missing student's grade");
                 $("#studentGrade").addClass("missing");
             }
 
@@ -121,7 +115,7 @@
         
             
         
-// }());
+}());
 
 
 
